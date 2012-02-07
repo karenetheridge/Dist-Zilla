@@ -82,6 +82,19 @@ has is_template => (
 sub gather_files {
   my ($self, $arg) = @_;
 
+  my $file = Dist::Zilla::File::InMemory->new({
+    name    => $self->filename,
+    content => $self->_content,
+  });
+
+  $self->add_file($file);
+  return;
+}
+
+sub _content
+{
+  my $self = shift;
+
   my $content = join "\n", $self->content->flatten;
   $content .= qq{\n};
 
@@ -95,13 +108,7 @@ sub gather_files {
     );
   }
 
-  my $file = Dist::Zilla::File::InMemory->new({
-    name    => $self->filename,
-    content => $content,
-  });
-
-  $self->add_file($file);
-  return;
+  return $content;
 }
 
 __PACKAGE__->meta->make_immutable;
