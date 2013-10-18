@@ -6,6 +6,7 @@ use Moose::Autobox;
 with (
   'Dist::Zilla::Role::BuildPL',
   'Dist::Zilla::Role::PrereqSource',
+  'Dist::Zilla::Role::FileGatherer',
   'Dist::Zilla::Role::TextTemplate',
 );
 
@@ -13,6 +14,7 @@ use namespace::autoclean;
 
 use CPAN::Meta::Requirements 2.121; # requirements_for_module
 use Dist::Zilla::File::InMemory;
+use List::Util 'first';
 use Data::Dumper;
 
 =head1 DESCRIPTION
@@ -163,6 +165,20 @@ sub fallback_build_requires {
   return $self->_dump_as( $merged->as_string_hash, '*fallback_build_requires' );
 }
 
+sub gather_files {
+  my ($self) = @_;
+
+  require Dist::Zilla::File::InMemory;
+
+  my $file = Dist::Zilla::File::InMemory->new({
+    name    => 'Build.PL',
+    content => '',      # to be filled in via setup_installer
+  });
+
+  $self->add_file($file);
+  return;
+}
+
 sub setup_installer {
   my ($self, $arg) = @_;
 
@@ -188,12 +204,10 @@ sub setup_installer {
     },
   );
 
-  my $file = Dist::Zilla::File::InMemory->new({
-    name    => 'Build.PL',
-    content => $content,
-  });
+  my $file = first { $_->name eq 'Build.PL' } @{$self->zilla->files};
+  $self->log_debug([ 'updating contents of Build.PL in memory' ]);
+  $file->content($content);
 
-  $self->add_file($file);
   return;
 }
 
