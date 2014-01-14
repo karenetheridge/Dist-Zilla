@@ -109,6 +109,7 @@ remove some of them.
 All the L<FileMunger|Dist::Zilla::Role::FileMunger>s get a chance to muck about
 with each file, possibly changing its name, content, or installability.
 
+# XXX fixme
 Now that the distribution is basically set up, it needs an install tool, like a
 F<Makefile.PL>.  All the
 L<InstallTool|Dist::Zilla::Role::InstallTool>-performing plugins are used to

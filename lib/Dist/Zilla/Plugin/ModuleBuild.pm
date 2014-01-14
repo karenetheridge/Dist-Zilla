@@ -172,15 +172,15 @@ sub gather_files {
 
   my $file = Dist::Zilla::File::InMemory->new({
     name    => 'Build.PL',
-    content => '',      # to be filled in via setup_installer
+    content => '',      # to be filled in via after_prereqs
   });
 
   $self->add_file($file);
   return;
 }
 
-sub setup_installer {
-  my ($self, $arg) = @_;
+sub after_prereqs {
+  my ($self) = @_;
 
   $self->log_fatal("can't build Build.PL; license has no known META.yml value")
     unless $self->zilla->license->meta_yml_name;

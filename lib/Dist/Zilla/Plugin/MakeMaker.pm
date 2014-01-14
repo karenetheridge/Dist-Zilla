@@ -72,7 +72,7 @@ has '_runner' => (
 # properly with this use case until Moose 2.0300. -- rjbs, 2012-02-08
 with qw(
   Dist::Zilla::Role::BuildRunner
-  Dist::Zilla::Role::InstallTool
+  Dist::Zilla::Role::AfterPrereqs
   Dist::Zilla::Role::PrereqSource
   Dist::Zilla::Role::FileGatherer
   Dist::Zilla::Role::TestRunner
@@ -132,7 +132,7 @@ sub gather_files {
 
   my $file = Dist::Zilla::File::InMemory->new({
     name    => 'Makefile.PL',
-    content => '',      # to be filled in via setup_installer
+    content => '',      # to be filled in via after_prereqs
   });
 
   $self->add_file($file);
@@ -256,8 +256,8 @@ sub fallback_prereq_pm {
   return $self->_dump_as( $fallback, '*FallbackPrereqs' );
 }
 
-sub setup_installer {
-  my ($self, $arg) = @_;
+sub after_prereqs {
+  my ($self) = @_;
 
   my $write_makefile_args = $self->write_makefile_args;
 
@@ -305,7 +305,7 @@ L<Manifest|Dist::Zilla::Plugin::Manifest>.
 
 Dist::Zilla roles:
 L<BuildRunner|Dist::Zilla::Role::FileGatherer>,
-L<InstallTool|Dist::Zilla::Role::InstallTool>,
+L<AfterPrereqs|Dist::Zilla::Role::AfterPrereqs>,
 L<PrereqSource|Dist::Zilla::Role::PrereqSource>,
 L<TestRunner|Dist::Zilla::Role::TestRunner>.
 
