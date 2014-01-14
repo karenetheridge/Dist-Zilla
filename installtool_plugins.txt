@@ -26,19 +26,19 @@ Dist::Zilla::Plugin::CheckChangeLog
 Dist::Zilla::Plugin::ReadmeFromPod
 Dist::Zilla::Plugin::CoderwallEndorse
 Dist::Zilla::Plugin::Pod2Html
+Dist::Zilla::Plugin::TemplateCJM
 Dist::Zilla::Plugin::ManifestInRoot  - when file list is locked after gather_files
-Dist::Zilla::Plugin::MatchManifest  - ""
+Dist::Zilla::Plugin::MatchManifest   - ""
+Dist::Zilla::Plugin::TextTabs
+Dist::Zilla::Plugin::TravisCI
+Dist::Zilla::Plugin::TravisCI::StatusBadge
+Dist::Zilla::Plugin::TravisYML
 
 - should run in MetaProvider phase:
 Dist::Zilla::Plugin::HelpWanted
 
 
-???
+- other:
 Dist::Zilla::Plugin::ReportPhase
-Dist::Zilla::Plugin::TemplateCJM
-Dist::Zilla::Plugin::TextTabs
-Dist::Zilla::Plugin::TravisCI
-Dist::Zilla::Plugin::TravisCI::StatusBadge
-Dist::Zilla::Plugin::TravisYML
 
 
