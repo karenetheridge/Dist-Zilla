@@ -325,10 +325,13 @@ sub build_in {
 
   $_->register_prereqs for $self->plugins_with(-PrereqSource)->flatten;
 
+  # prereqs can no longer be modified!
   $self->prereqs->finalize;
 
   # Barf if someone has already set up a prereqs entry? -- rjbs, 2010-04-13
   $self->distmeta->{prereqs} = $self->prereqs->as_string_hash;
+
+  $_->after_prereqs for $self->plugins_with(-AfterPrereqs)->flatten;
 
   $_->setup_installer for $self->plugins_with(-InstallTool)->flatten;
 

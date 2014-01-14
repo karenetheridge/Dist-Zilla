@@ -1,5 +1,5 @@
 package Dist::Zilla::Role::InstallTool;
-# ABSTRACT: something that creates an install program for a dist
+# ABSTRACT: something that creates an install program for a dist (DEPRECATED)
 
 use Moose::Role;
 with qw(
@@ -20,8 +20,19 @@ installable, like F<Makefile.PL> or F<Build.PL> and add them with the
 C<add_file> method provided by L<Dist::Zilla::Role::FileInjector>, which is
 also composed by this role.
 
+This is a B<deprecated phase> -- plugins using this phase should instead do
+their work in the L<Dist::Zilla::Role::FileGatherer/FileGatherer> or
+L<Dist::Zilla::Role::AfterPrereqs/AfterPrereqs> phase.
+
 =cut
 
 requires 'setup_installer';
+
+around setup_installer => sub {
+  my ($orig, $self, @args) = @_;
+
+  warn 'WARNING: the InstallTool phase is deprecated!';
+  $self->$orig(@args);
+};
 
 1;
