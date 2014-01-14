@@ -1,0 +1,35 @@
+
+# All these plugins use the InstallTool role but they don't actually
+# provide a Makefile.PL or Build.PL file of their own.
+# they should all move their work to some other phase.
+
+Dist::Zilla::Plugin::ApacheTest
+Dist::Zilla::Plugin::AssertOS
+Dist::Zilla::Plugin::Author::Plicease::OSPrereqsNot
+Dist::Zilla::Plugin::CheckChangeLog
+Dist::Zilla::Plugin::CoderwallEndorse
+Dist::Zilla::Plugin::Conflicts
+Dist::Zilla::Plugin::Covenant
+Dist::Zilla::Plugin::Dpkg
+Dist::Zilla::Plugin::DualLife
+Dist::Zilla::Plugin::HelpWanted
+Dist::Zilla::Plugin::InstallGuide
+Dist::Zilla::Plugin::ManifestInRoot
+Dist::Zilla::Plugin::MatchManifest
+Dist::Zilla::Plugin::NoAutomatedTesting
+Dist::Zilla::Plugin::OSPrereqs
+Dist::Zilla::Plugin::PerlVersionPrereqs
+Dist::Zilla::Plugin::Pod2Html
+Dist::Zilla::Plugin::ReadmeAnyFromPod
+Dist::Zilla::Plugin::ReadmeFromPod
+Dist::Zilla::Plugin::ReportPhase
+Dist::Zilla::Plugin::TemplateCJM
+Dist::Zilla::Plugin::TextTabs
+Dist::Zilla::Plugin::TravisCI
+Dist::Zilla::Plugin::TravisCI::StatusBadge
+Dist::Zilla::Plugin::TravisYML
+Dist::Zilla::Plugin::Test::ReportPrereqs
+
+inc::MungeInstallers    # in Acme-LookOfDisapproval
+inc::RequireExecutable  # in Plack-App-BeanstalkConsole
+
