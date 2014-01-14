@@ -345,6 +345,7 @@ sub build_in {
     $self->_write_out_file($file, $build_root);
   }
 
+  # XXX todo make file contents immutable
   $_->after_build({ build_root => $build_root })
     for $self->plugins_with(-AfterBuild)->flatten;
 

@@ -187,6 +187,7 @@ sub after_prereqs {
 
   my $module_build_args = $self->module_build_args;
 
+  # XXX TODO this should go into dumpconfig instead!
   $self->__module_build_args($module_build_args);
 
   my $dumped_args = $self->_dump_as($module_build_args, '*module_build_args');
